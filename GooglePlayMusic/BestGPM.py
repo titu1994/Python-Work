@@ -7,8 +7,6 @@ if __name__ == "__main__":
     cursor = db.conn.cursor()
     bestSongs = cursor.execute(select)
 
-    print("Song Name, Album, Artist, Song Duration in Milliseconds, Play Count")
+    print("Song Name, Album, Artist, Song Duration in Milliseconds, Play Count\n")
     for song in bestSongs:
-        print(song)
-
-
+        print(*[song[0], song[1], song[2], song[4]],sep=", ")

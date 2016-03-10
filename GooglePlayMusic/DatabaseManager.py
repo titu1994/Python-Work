@@ -50,6 +50,11 @@ class GPMDBManager:
         c = self.conn.cursor()
         return c.execute(SELECT_ORDER_PLAY_COUNT)
 
+    def selectSongsHeardBefore(self):
+        SELECT = """SELECT * FROM Songs WHERE (songPlayCount > 0) ORDER BY songPlayCount DESC"""
+        c = self.conn.cursor()
+        return c.execute(SELECT)
+
     def deleteAllSongs(self):
         TRUNCATE_SONGS = """DELETE FROM Songs"""
         self.conn.cursor().execute(TRUNCATE_SONGS)
