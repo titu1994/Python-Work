@@ -27,7 +27,8 @@ if __name__ == "__main__":
 
     model.compile(loss="mse", optimizer="adam")
     #callbacks=[EarlyStopping( patience=10)]
-    model.fit(X, y, nb_epoch=nEpochs, verbose=1, )
+    print("NN : Begin Fitting")
+    model.fit(X, y, nb_epoch=nEpochs, verbose=1, validation_split=0.00, )
 
     yPreds = model.predict(X)
     mse = metrics.mean_squared_error(y, yPreds)
@@ -44,3 +45,6 @@ if __name__ == "__main__":
 
     if lrmse >= mse: print("Neural Network >= Linear Regression. Better than standard LR")
     else: print("Neural Network < Linear Regression. Worse than standard LR")
+
+    print("yLAST NN : ", yPreds[-1][0], " yLASTLR : ", lrYPred[-1],)
+    print("NN MSE = ", -(y[-1] - yPreds[-1]), " LR MSE = ", -(y[-1] - lrYPred[-1]))
