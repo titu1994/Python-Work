@@ -9,4 +9,4 @@ if __name__ == "__main__":
 
     print("Song Name, Album, Artist, Song Duration in Milliseconds, Play Count\n")
     for song in bestSongs:
-        print(*[song[0], song[1], song[2], song[4]],sep=", ")
+        print(*[song[0], song[1], song[2], song[4]], sep=", ")

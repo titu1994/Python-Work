@@ -15,24 +15,29 @@ class GPMDBManager:
         self.colSongArtist = "songArtist"
         self.colSongDurationMillis = "songDurationMillis"
         self.colSongPlayCount = "songPlayCount"
+        self.colSongRating = "songRating"
+        self.colSongComposer = "songComposer"
+        self.colSongYear = "songYear"
 
-        __CREATE_TABLE_INTERNAL = """CREATE TABLE IF NOT EXISTS Songs (songName TEXT, songAlbum TEXT,
-                                    songArtist TEXT, songDurationMillis INTEGER, songPlayCount INTEGER)"""
+        __CREATE_TABLE_SONGS = """CREATE TABLE IF NOT EXISTS Songs (songName TEXT, songAlbum TEXT,
+                                    songArtist TEXT, songDurationMillis INTEGER, songPlayCount INTEGER,
+                                    songRating TEXT, songComposer TEXT, songYear INTEGER)"""
+
         self.conn = None
 
         self.connect()
         c = self.conn.cursor()
-        c.execute(__CREATE_TABLE_INTERNAL)
+        c.execute(__CREATE_TABLE_SONGS)
 
     def connect(self):
         if self.conn is None:
             self.conn = sqlite3.connect(self.dbName)
 
-    def insertSong(self, songName, songAlbum, songArtist, songDuration, songCount):
-        INSERT_SONG = """INSERT INTO Songs VALUES (?, ?, ?, ?, ?)"""
+    def insertSong(self, songName, songAlbum, songArtist, songDuration, songCount, songRating, songComposer, songYear):
+        INSERT_SONG = """INSERT INTO Songs VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
 
         c = self.conn.cursor()
-        c.execute(INSERT_SONG, (songName, songAlbum, songArtist, songDuration, songCount))
+        c.execute(INSERT_SONG, (songName, songAlbum, songArtist, songDuration, songCount, songRating, songComposer, songYear))
         self.conn.commit()
 
     def selectSongByName(self, songName):
@@ -72,9 +77,12 @@ if __name__ == "__main__":
     ANDROID_DEVICE_MAC_ADDRESS = "00:00:00:00:00:00"
 
     client = Mobileclient()
-    client.login("abc@gmail.com", "pass", ANDROID_DEVICE_MAC_ADDRESS)
+    client.login("abc@gmail.com", "xyz", ANDROID_DEVICE_MAC_ADDRESS)
+
+    print("Getting songs")
 
     library = client.get_all_songs()
+    print("Retreived all songs")
 
     for i, songDict in enumerate(library):
         name = songDict["title"]
@@ -82,10 +90,12 @@ if __name__ == "__main__":
         artist = songDict["artist"]
         duration = songDict["durationMillis"]
         playCount = songDict["playCount"]
+        songRating = songDict["rating"]
+        songComposer = songDict["composer"]
+        songYear = songDict["year"]
 
-        manager.insertSong(name, album, artist, duration, playCount)
+        manager.insertSong(name, album, artist, duration, playCount, songRating, songComposer, songYear)
         print("Inserted Song %d : Name = %s" % ((i+1), name))
 
     """
-
     manager.close()
