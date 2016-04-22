@@ -32,6 +32,7 @@ class GPMDBManager:
     def connect(self):
         if self.conn is None:
             self.conn = sqlite3.connect(self.dbName)
+            self.conn.text_factory = lambda x: str(x, "utf-16")
 
     def insertSong(self, songName, songAlbum, songArtist, songDuration, songCount, songRating, songComposer, songYear):
         INSERT_SONG = """INSERT INTO Songs VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
@@ -73,6 +74,7 @@ if __name__ == "__main__":
 
     """
     Load all songs into db (Use ONLY ONCE)
+    """
 
     ANDROID_DEVICE_MAC_ADDRESS = "00:00:00:00:00:00"
 
@@ -97,5 +99,5 @@ if __name__ == "__main__":
         manager.insertSong(name, album, artist, duration, playCount, songRating, songComposer, songYear)
         print("Inserted Song %d : Name = %s" % ((i+1), name))
 
-    """
+
     manager.close()

@@ -28,14 +28,9 @@ class MultiColumnLabelEncoder:
         return self.fit(X,y).transform(X)
 
 if __name__ == "__main__":
-    db = GPMDBManager()
+    import sqlite3 as sql
 
-    sql = """SELECT * FROM Songs WHERE (songPlayCount > 0) ORDER BY songPlayCount DESC"""
-    df = pd.read_sql(sql, db.conn)
-
-    df.drop(["songName"], axis=1, inplace=True)
-    df["songArtist"] = df["songArtist"].astype("category")
-    df["songArtist"] = df["songArtist"].astype("category")
+    df = pd.read_csv("music.csv", header=0)
 
     df["SongTotal"] = df["songDurationMillis"] * df["songPlayCount"]
 
@@ -43,12 +38,10 @@ if __name__ == "__main__":
     df["SongInBest"] = 0
     df.loc[(df.songPlayCount > thresholdCount), "SongInBest"] = 1
 
-    #df = df.apply(LabelEncoder().fit_transform)
-
     print(df.describe())
 
     timeInMillis = df.SongTotal.sum()
     print("Total Time listened to songs (in Minutes): ", timeInMillis / 1000 / 60)
     print("Total Time listened to songs (in Hours): ", timeInMillis / 1000 / 60 / 60)
 
-
+    df.to_csv("ExtraMusicDB.csv", encoding="utf-16", index=0)
