@@ -32,7 +32,7 @@ class GPMDBManager:
     def connect(self):
         if self.conn is None:
             self.conn = sqlite3.connect(self.dbName)
-            self.conn.text_factory = lambda x: str(x, "utf-16")
+            #self.conn.text_factory = lambda x: str(x, "utf-16")
 
     def insertSong(self, songName, songAlbum, songArtist, songDuration, songCount, songRating, songComposer, songYear):
         INSERT_SONG = """INSERT INTO Songs VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""

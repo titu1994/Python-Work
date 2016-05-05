@@ -38,10 +38,13 @@ if __name__ == "__main__":
     df["SongInBest"] = 0
     df.loc[(df.songPlayCount > thresholdCount), "SongInBest"] = 1
 
-    print(df.describe())
+    print(df.info(), "\n", df.describe())
 
     timeInMillis = df.SongTotal.sum()
     print("Total Time listened to songs (in Minutes): ", timeInMillis / 1000 / 60)
     print("Total Time listened to songs (in Hours): ", timeInMillis / 1000 / 60 / 60)
 
-    df.to_csv("ExtraMusicDB.csv", encoding="utf-16", index=0)
+    #con = sql.connect("GPM.db")
+
+    #df.to_sql("MusicTable", con)
+    #df.to_hdf(r"D:\Users\Yue\PycharmProjects\Python-Work\GooglePlayMusic\GPM.h5", "MusicData")
