@@ -46,6 +46,8 @@ if __name__ == "__main__":
                 type = ".jpg"
                 if ".png" in imgsrc:
                     type = ".png"
+                elif ".gif" in imgsrc:
+                    print("Gif images cannot be downloaded. Skipping image %d" % (filecounter))
 
                 results.append(pool.apply_async(urlretrieve, [imgsrc, "Images/" + fn + "/" + str(filecounter) + type]))
                 filecounter += 1
