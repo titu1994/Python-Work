@@ -9,11 +9,14 @@ from NeuralNetworks.SpiralGenerator import generateSpiralDataframe, generateSpir
 
 if __name__ == "__main__":
 
-    points = generateSpiralDataset(numSamples=1000, noise=0.3)
+    points = generateSpiralDataset(numSamples=100, noise=0.3)
     df = generateSpiralDataframe(points)
 
     train, test = train_test_split(df, train_size=0.7)
+    #train = train[["label", "x", "y"]]
     train = train.values
+
+    #test = test[["label", "x", "y"]]
     test = test.values
 
     trainX = train[:, 1:]
@@ -29,16 +32,16 @@ if __name__ == "__main__":
     nbClasses = trainY.shape[1]
 
     batchSize = 32
-    epochs = 150
+    epochs = 500
 
     model = models.Sequential()
 
     model.add(core.Dense(8, input_shape=(nbFeatures,), activation="tanh"))
-    model.add(core.Dense(4, activation="tanh"))
+    model.add(core.Dense(8, activation="tanh"))
 
     model.add(core.Dense(nbClasses, activation="softmax"))
 
-    model.compile(optimizer="adadelta", loss="categorical_crossentropy", metrics=["accuracy"])
+    model.compile(optimizer="adadelta", loss="binary_crossentropy", metrics=["accuracy"])
 
     model.fit(trainX, trainY, batch_size=batchSize, nb_epoch=epochs, validation_data=(testX, testY))
 
