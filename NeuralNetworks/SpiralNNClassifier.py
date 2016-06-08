@@ -28,6 +28,7 @@ if __name__ == "__main__":
     testY = kutils.to_categorical(testY)
 
     # Variables
+    print(train.shape, ' ', trainX.shape)
     nbFeatures = trainX.shape[1]
     nbClasses = trainY.shape[1]
 
@@ -41,7 +42,7 @@ if __name__ == "__main__":
 
     model.add(core.Dense(nbClasses, activation="softmax"))
 
-    model.compile(optimizer="adadelta", loss="binary_crossentropy", metrics=["accuracy"])
+    model.compile(optimizer='adadelta', loss="binary_crossentropy", metrics=["accuracy"])
 
     model.fit(trainX, trainY, batch_size=batchSize, nb_epoch=epochs, validation_data=(testX, testY))
 
