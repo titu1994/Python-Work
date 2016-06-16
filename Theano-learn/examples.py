@@ -34,7 +34,7 @@ f = function([x, In(y, value=0)], z)
 print(f(20))
 print(f(20, 10))
 
-# Accumulators
+# Shared variables
 
 state = shared(0)
 inc = T.iscalar('inc')
