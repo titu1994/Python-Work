@@ -28,17 +28,16 @@ if __name__ == "__main__":
     testY = kutils.to_categorical(testY)
 
     # Variables
-    print(train.shape, ' ', trainX.shape)
     nbFeatures = trainX.shape[1]
     nbClasses = trainY.shape[1]
 
     batchSize = 32
-    epochs = 500
+    epochs = 100
 
     model = models.Sequential()
 
-    model.add(core.Dense(8, input_shape=(nbFeatures,), activation="tanh"))
-    model.add(core.Dense(8, activation="tanh"))
+    model.add(core.Dense(8, input_shape=(nbFeatures,), activation="relu"))
+    model.add(core.Dense(8, activation="relu"))
 
     model.add(core.Dense(nbClasses, activation="softmax"))
 
