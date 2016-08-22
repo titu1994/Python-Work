@@ -51,6 +51,30 @@ def xy_general(rho, a, b, y, z, n1, n2, n3):
     vals = func(rho)
     return vals[0].flatten(), vals[1].flatten()
 
+def xyz(R1, theta, R2, phi):
+    theta_ = T.scalar('theta')
+    phi_ = T.scalar('phi')
+
+    x = R1 * T.cos(theta_) * R2 * T.cos(phi_)
+    y = R2 * T.sin(theta_) * R2 * T.cos(phi_)
+    z = R2 * T.sin(phi_)
+    func = function([theta_, phi_], [x, y, z], allow_input_downcast=True)
+    vals = func(theta, phi)
+    return vals[0].flatten(), vals[1].flatten(), vals[2].flatten()
+
+def xyz2(theta, a, b, m, n1, n2, n3, rho, a2, b2, m2, n4, n5, n6):
+    theta_ = T.scalar('theta')
+    rho_ = T.scalar('rho')
+    R1 = R(theta, a, b, m, n1, n2, n3)
+    R2 = R(rho, a2, b2, m2, n4, n5, n6)
+
+    x = R1 * T.cos(theta_) * R2 * T.cos(rho_)
+    y = R1 * T.sin(theta_) * R2 * T.cos(rho_)
+    z = R2 * T.sin(rho_)
+    func = function([theta_, rho_], [x, y, z], allow_input_downcast=True)
+    vals = func(theta, rho)
+    return vals[0].flatten(), vals[1].flatten(), vals[2].flatten()
+
 if __name__ == "__main__":
     u = np.arange(0, 2 * np.pi, 0.001)
 
