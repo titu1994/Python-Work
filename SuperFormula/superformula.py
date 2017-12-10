@@ -44,10 +44,11 @@ if __name__ == "__main__":
         y.append(v[1])
 
     import seaborn as sns
+    import matplotlib.pyplot as plt
     sns.set_style("white")
 
-    sns.plt.plot(x, y)
-    sns.plt.show()
+    plt.plot(x, y)
+    plt.show()
 
     # Generalized formula
     vals = [xy_general(ui, 1, 1, 8, 40, -0.2, 1, 1) for ui in u]
@@ -58,5 +59,5 @@ if __name__ == "__main__":
         x.append(v[0])
         y.append(v[1])
 
-    sns.plt.plot(x, y)
-    sns.plt.show()
+    plt.plot(x, y)
+    plt.show()
