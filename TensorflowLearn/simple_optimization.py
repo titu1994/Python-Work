@@ -4,8 +4,9 @@ import tensorflow as tf
 x = tf.Variable(initial_value=tf.random_uniform((1,)), dtype=tf.float32)
 #y = tf.nn.sigmoid(x) * (1 - tf.nn.sigmoid(x))
 #y = (1 - tf.nn.tanh(x) ** 2)
+y = tf.tan(x) ** 2 - x - tf.log(tf.abs(x)) / (tf.log(10.) * (x ** 2 - 1))
 
-opt = tf.train.GradientDescentOptimizer(learning_rate=1e-2)
+opt = tf.train.GradientDescentOptimizer(learning_rate=0.1)
 #train_op = opt.minimize(y)  # minimize
 train_op = opt.minimize(-y)  # maximize
 

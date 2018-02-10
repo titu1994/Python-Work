@@ -17,7 +17,7 @@ loss = tf.nn.l2_loss(y)  # to minimize a function with variables
 global_step = tf.Variable(0, trainable=False)
 lr = tf.train.exponential_decay(0.1, global_step, decay_steps=500, decay_rate=0.95, staircase=True)
 
-opt = tf.train.GradientDescentOptimizer(lr)
+opt = tf.train.RMSPropOptimizer(lr)
 train_op = opt.minimize(loss)  # minimize
 #train_op = opt.minimize(-loss)  # maximize
 
