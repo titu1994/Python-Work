@@ -32,8 +32,8 @@ print(b.get_value())
 p_1 = 1 / (1 + T.exp(-T.dot(x, w) - b))   # Probability that target = 1
 prediction = p_1 > 0.5                    # The prediction thresholded
 xent = -y * T.log(p_1) - (1-y) * T.log(1-p_1) # Cross-entropy loss function
-cost = xent.mean() + 0.01 * (w ** 2).sum()# The cost to minimize
-gw, gb = T.grad(cost, [w, b])             # Compute the gradient of the cost
+cost = xent.mean() + 0.01 * (w ** 2).sum()# The loss to minimize
+gw, gb = T.grad(cost, [w, b])             # Compute the gradient of the loss
                                           # w.r.t weight vector w and
                                           # bias term b
                                           # (we shall return to this in a
