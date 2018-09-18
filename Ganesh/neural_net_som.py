@@ -12,10 +12,10 @@ X_test = X_test.reshape((-1, 28 * 28))
 Y_train = to_categorical(Y_train, 10)
 Y_test = to_categorical(Y_test, 10)
 
-learning_rate = 0.001
-training_epochs = 50
-batchsize = 250
-l2_reg = 1e-4
+learning_rate = 0.005
+training_epochs = 100
+batchsize = 1000
+l2_reg = 1e-3
 
 number_of_inputs = X_train.shape[1]
 number_of_outputs = Y_train.shape[1]
@@ -51,8 +51,9 @@ with tf.name_scope('metrics'):
 with tf.name_scope('dataset'):
     dataset = tf.data.Dataset.from_tensor_slices((X_placeholder, y_placeholder))
     dataset = dataset.batch(batchsize)
-    dataset = dataset.shuffle(buffer_size=100, seed=0, reshuffle_each_iteration=True)
+    dataset = dataset.shuffle(buffer_size=10000, seed=0, reshuffle_each_iteration=True)
     dataset = dataset.repeat()
+    dataset = dataset.prefetch(100)
 
     dataset_initializer = dataset.make_initializable_iterator()
     dataset_iterator = dataset_initializer.get_next()
