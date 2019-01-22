@@ -22,7 +22,7 @@ What this model does:
 
 2 ip - 1 op model : 2 ip = sentence and aspect sentence
 
-Shared embedding layer = reduce # of params and chance to overfit.
+Shared embedding layer = reduce # of parameters and chance to overfit.
 sentence embedding = sentence passed through embedding layer (keep for later)
 aspect embedding = aspect sentence passed through embedding layer 
 
@@ -106,7 +106,7 @@ What this model does:
 
 2 ip - 1 op model : 2 ip = sentence and aspect sentence
 
-Disjoing embedding layer = more # of params and chance to overfit.
+Disjoing embedding layer = more # of parameters and chance to overfit.
 sentence embedding = sentence passed through embedding layer (keep for later ; not learned)
 aspect embedding = aspect sentence passed through embedding layer (learned)
 

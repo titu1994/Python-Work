@@ -27,7 +27,7 @@ if __name__ == "__main__":
     y = [i + random.gauss(0, 0.33) for i in X]
 
     alpha, beta = compute_vals(X, y)
-    print("alpha : ", alpha, " - beta : ", beta)
+    print("lr : ", alpha, " - beta : ", beta)
 
     preds = predict(X, alpha, beta)[0]
     error = mse(y, preds)[0]
