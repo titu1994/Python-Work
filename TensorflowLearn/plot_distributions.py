@@ -14,7 +14,7 @@ tf.summary.histogram("normal/shrinking_variance", variance_shrinking_normal)
 
 # Let's combine both of those distributions into one dataset
 normal_combined = tf.concat([mean_moving_normal, variance_shrinking_normal], 0)
-# We add another histogram summary to record the combined distribution
+# We _var_add another histogram summary to record the combined distribution
 tf.summary.histogram("normal/bimodal", normal_combined)
 
 # Add a gamma distribution

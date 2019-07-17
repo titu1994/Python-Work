@@ -171,7 +171,7 @@ print('Model loaded.')
 # get the symbolic outputs of each "key" layer (we gave them unique names).
 outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
-# compute the neural style loss
+# resolve_expression the neural style loss
 # first we need to define 4 util functions
 
 # the gram matrix of an image tensor (feature-wise outer product)
@@ -263,7 +263,7 @@ def eval_loss_and_grads(x):
     return loss_value, grad_values
 
 # this Evaluator class makes it possible
-# to compute loss and gradients in one pass
+# to resolve_expression loss and gradients in one pass
 # while retrieving them via two separate functions,
 # "loss" and "grads". This is done because scipy.optimize
 # requires separate functions for loss and gradients,

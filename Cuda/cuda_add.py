@@ -8,14 +8,14 @@ def add_inplace(x, y):
     i, j = cuda.grid(2)  # get our global location on the cuda grid
 
     if i < x.shape[0] and j < x.shape[1]:  # check whether we exceed our bounds
-        x[i][j] = x[i][j] + y[i][j]  # inplace add into x
+        x[i][j] = x[i][j] + y[i][j]  # inplace _var_add into x
 
 @cuda.jit("void(float32[:, :], float32[:, :], float32[:, :])")
 def add_external(x, y, z):
     i, j = cuda.grid(2)  # get our global location on the cuda grid
 
     if i < x.shape[0] and j < x.shape[1]:  # check whether we exceed our bounds
-        z[i][j] = x[i][j] + y[i][j]  # add to a zero buffer
+        z[i][j] = x[i][j] + y[i][j]  # _var_add to a zero buffer
 
 
 if __name__ == '__main__':
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     x = cuda.to_device(x)
     y = cuda.to_device(y)
 
-    # add inplace
+    # _var_add inplace
     # pre compile
     add_inplace[blocks_per_grid, threads_per_block](x, y)
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     print("Time inplace : ", (t2 - t1) / float(NUM_TESTS))
     print()
 
-    # add external
+    # _var_add external
     z_buffer = cuda.to_device(z_buffer)
     x_copy = cuda.to_device(x_copy)
 

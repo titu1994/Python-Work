@@ -53,7 +53,7 @@ X = np.linspace(0.0, 1.0, num=100) + np.random.normal(0, 0.05, size=(100, 10, 1)
 Y = np.linspace(-0.1, 1.1, num=100).reshape(-1, 1, 1) + np.random.normal(0, 0.045, size=(100, 10, units))
 
 optimizer = tf.train.AdamOptimizer(1e-3)
-model.compile(optimizer=optimizer, loss='mse')
+model.compile(optimizer=optimizer, loss='diff')
 
 model.fit(X, Y, batch_size=20, epochs=200, validation_split=0.1)
 

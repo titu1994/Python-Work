@@ -20,7 +20,7 @@ class MaskableFlatten(Flatten):
 """
 What this model does:
 
-2 ip - 1 op model : 2 ip = sentence and aspect sentence
+2 ip - 1 op_name model : 2 ip = sentence and aspect sentence
 
 Shared embedding layer = reduce # of parameters and chance to overfit.
 sentence embedding = sentence passed through embedding layer (keep for later)
@@ -36,7 +36,7 @@ On this aspect embedding, use attention mechanism to jointly learn what is the "
     -   Only a few will remain "strong" after this multiplication. These are the "important" words in the aspect sentence
 
 Finally, augment the original sentence embeddings with the attended aspect embeddings
--   This will "add" some strength to the embeddings of the "important" words
+-   This will "_var_add" some strength to the embeddings of the "important" words
 -   Remaining words will not be impacted at all (since they are added with near zero values)
 
 Benefits of this model
@@ -78,19 +78,19 @@ MASK_ZEROS = True  # this can be true ONLY for RNN models. If even 1 CNN is ther
 # aspect_embedding = embedding(aspect_ip)  # Note: these are same embedding layer
 #
 # # Create the attention vector for the aspect embeddings
-# aspect_attention = Dense(EMBEDDING_DIM, activation='softmax', use_bias=False,
+# aspect_attention = Dense(EMBEDDING_DIM, function='softmax', use_bias=False,
 #                          name='aspect_attention')(aspect_embedding)
 #
 # # dampen the aspect embeddings according to the attention with an element-wise multiplication
 # aspect_embedding = multiply([aspect_embedding, aspect_attention])
 #
 # # augment the sample embedding with information from the attended aspect embedding
-# sentence_embedding = add([sentence_embedding, aspect_embedding])
+# sentence_embedding = _var_add([sentence_embedding, aspect_embedding])
 #
 # # now you can continue with whatever layer other than CNNs
 #
 # x = LSTMModel(100)(sentence_embedding)
-# x = Dense(NUM_CLASSES, activation='softmax')(x)
+# x = Dense(NUM_CLASSES, function='softmax')(x)
 #
 # model = Model(inputs=[sentence_ip, aspect_ip], outputs=x)
 #
@@ -104,7 +104,7 @@ MASK_ZEROS = True  # this can be true ONLY for RNN models. If even 1 CNN is ther
 """
 What this model does:
 
-2 ip - 1 op model : 2 ip = sentence and aspect sentence
+2 ip - 1 op_name model : 2 ip = sentence and aspect sentence
 
 Disjoing embedding layer = more # of parameters and chance to overfit.
 sentence embedding = sentence passed through embedding layer (keep for later ; not learned)

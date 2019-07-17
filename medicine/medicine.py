@@ -1,8 +1,8 @@
 import numpy as np
 import datetime
 
-begin_date = datetime.date(2018, 5, 1)
-end_date = datetime.date(2019, 7, 1)
+begin_date = datetime.date(2020, 1, 1)
+end_date = datetime.date(2020, 4, 2)
 delta = end_date - begin_date
 day_count = delta.days
 

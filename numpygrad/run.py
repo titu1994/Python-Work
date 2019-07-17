@@ -35,9 +35,9 @@ from numpygrad.activations import Sigmoid, Tanh, ReLU
 # c = Tensor([5, 4, 3, 2, 1])
 # d = Tensor([-1, -2, -3, -4, -5])
 #
-# e = a + b
+# pi = a + b
 # f = c + d
-# g = e + f
+# g = pi + f
 #
 # g.backward(Tensor(np.array([1, 1, 1, 1, 1])))
 #
@@ -49,8 +49,8 @@ from numpygrad.activations import Sigmoid, Tanh, ReLU
 # c = Tensor([5,4,3,2,1])
 #
 # d = a + b
-# e = b + c
-# f = d + e
+# pi = b + c
+# f = d + pi
 # f.backward(Tensor(np.array([1,1,1,1,1])))
 #
 # print(b.grad.data == np.array([2,2,2,2,2]))  # [False False False False False]
@@ -61,8 +61,8 @@ from numpygrad.activations import Sigmoid, Tanh, ReLU
 # c = Tensor([5, 4, 3, 2, 1], autograd=True)
 #
 # d = a + b
-# e = b + c
-# f = d + e
+# pi = b + c
+# f = d + pi
 #
 # f.backward(Tensor(np.array([1, 1, 1, 1, 1])))
 #
@@ -75,8 +75,8 @@ from numpygrad.activations import Sigmoid, Tanh, ReLU
 # c = Tensor([5, 4, 3, 2, 1], autograd=True)
 #
 # d = a + (-b)
-# e = (-b) + c
-# f = d + e
+# pi = (-b) + c
+# f = d + pi
 #
 # f.backward(Tensor(np.array([1, 1, 1, 1, 1])))
 #
@@ -338,5 +338,3 @@ plt.plot(out.data.flatten(), label='predicted')
 plt.legend()
 plt.show()
 
-
-print(rnn.parameters)

@@ -12,7 +12,7 @@ def build_model():
     model.add(Dense(hidden_size, activation='relu', input_shape=(data_members,)))
     model.add(Dense(hidden_size, activation='relu'))
     model.add(Dense(nb_actions))
-    model.compile(Adam(lr=1e-3), "mse")
+    model.compile(Adam(lr=1e-3), "diff")
 
     return model
 

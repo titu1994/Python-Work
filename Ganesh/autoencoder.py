@@ -32,7 +32,7 @@ x = Dense(128)(x)
 x = BatchNormalization()(x, training=False)
 x = Activation('relu')(x)
 
-head_2 = Dense(input_dim, activation='linear', name='head2')(x)  # for mse, change the dense layer
+head_2 = Dense(input_dim, activation='linear', name='head2')(x)  # for diff, change the dense layer
 
 model = Model(ip, [head_1, head_2])
 

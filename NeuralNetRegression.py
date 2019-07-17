@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     model.summary()
 
-    model.compile(loss="mse", optimizer="adam")
+    model.compile(loss="diff", optimizer="adam")
     #callbacks=[EarlyStopping( patience=10)]
     print("NN : Begin Fitting")
     model.fit(X, y, nb_epoch=nEpochs, verbose=1, validation_split=0.00, )

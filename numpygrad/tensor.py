@@ -182,7 +182,7 @@ class Tensor(object):
                 self._resolve_backprop()
 
     def _resolve_backprop(self):
-        if self.creation_op in ['negation', 'add', 'sub', 'mul']:
+        if self.creation_op in ['negation', '_var_add', 'sub', 'mul']:
             self._resolve_arithmatic_backprop()
 
         if self.creation_op in ['dot', 'transpose', 'index_select', 'cross_entropy'] or 'expand' in self.creation_op:
@@ -200,7 +200,7 @@ class Tensor(object):
         if self.creation_op == 'negation':
             self.creators[0].backward(-self.grad)
 
-        if self.creation_op == 'add':
+        if self.creation_op == '_var_add':
             self.creators[0].backward(self.grad, self)
             self.creators[1].backward(self.grad, self)
 
@@ -291,7 +291,7 @@ class Tensor(object):
             return Tensor(self.data + other.data,
                           autograd=True,
                           creators=[self, other],
-                          creation_op='add')
+                          creation_op='_var_add')
 
         return Tensor(self.data + other.data)
 
