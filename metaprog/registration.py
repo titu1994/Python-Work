@@ -58,7 +58,7 @@ class AbstractStrategy(object):
         super(AbstractStrategy, self).__init__()
 
 
-def get(strategy_name):
+def get(strategy_name) -> AbstractStrategy:
     strategy_list = []
     for subclass_type in REGISTERED_STRATEGIES.keys():
 
