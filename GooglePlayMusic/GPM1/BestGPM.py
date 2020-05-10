@@ -1,4 +1,4 @@
-from GooglePlayMusic.DatabaseManager import GPMDBManager
+from GooglePlayMusic.GPM1.DatabaseManager import GPMDBManager
 import pandas as pd
 
 if __name__ == "__main__":

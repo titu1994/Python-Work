@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from GooglePlayMusic.DatabaseManager import GPMDBManager
+from GooglePlayMusic.GPM1.DatabaseManager import GPMDBManager
 
 class MultiColumnLabelEncoder:
     def __init__(self,columns = None):
