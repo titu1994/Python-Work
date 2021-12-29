@@ -128,7 +128,7 @@ def merge_text(Di, Di_1, overlap_idx):
 def print_alignment(C, Di, Di_1):
     for k in range(len(Di_1) + 1):
         if k == 0:
-            print("-\t-\t", end='')
+            print(" \t-\t", end='')
         else:
             print(f"{Di_1[k - 1]}\t", end="")
     print()
