@@ -125,8 +125,20 @@ def merge_text(Di, Di_1, overlap_idx):
     return new_seq
 
 
-def print_alignment(C):
+def print_alignment(C, Di, Di_1):
+    for k in range(len(Di_1) + 1):
+        if k == 0:
+            print("-\t-\t", end='')
+        else:
+            print(f"{Di_1[k - 1]}\t", end="")
+    print()
+
     for j in range(C.shape[0]):  # 0 to N_i + 1
+        if j == 0:
+            print("-\t", end='')
+        else:
+            print(f"{Di[j - 1]}\t", end="")
+
         for k in range(C.shape[1]):  # 0 to N_{i+1} + 1
             print(f"{C[j][k]}\t", end="")
         print()
@@ -143,7 +155,7 @@ if __name__ == '__main__':
 
     print()
     print("Alignment Matrix :")
-    print_alignment(C)
+    print_alignment(C, Di, Di_1)
 
     path, overlap_idx = compute_overlap_path(C)
     path = [str(p) for p in path]
