@@ -136,8 +136,13 @@ def print_alignment(C):
 if __name__ == '__main__':
     Di = "speech recognize"
     Di_1 = "cognition"
+    print("Previous Buffer (Di) :", Di)
+    print("New Buffer    (Di+1) :", Di_1)
 
     C = compute_alignment(Di, Di_1)
+
+    print()
+    print("Alignment Matrix :")
     print_alignment(C)
 
     path, overlap_idx = compute_overlap_path(C)
