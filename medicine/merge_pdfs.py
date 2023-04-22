@@ -2,7 +2,7 @@ import os
 import glob
 import argparse
 
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfMerger
 
 
 parser = argparse.ArgumentParser('Python pdf file merger')
@@ -29,14 +29,14 @@ if output_dir is None:
 if not os.path.exists(output_dir):
     os.makedirs(output_dir, exist_ok=True)
 
-merger = PdfFileMerger()
+merger = PdfMerger()
 
 for pdf in filepaths:
     merger.append(pdf)
 
 
 output_dir = os.path.abspath(output_dir)
-output_filepath = os.path.join(output_dir, 'Som - Jan 2022 - Reports.pdf')
+output_filepath = os.path.join(output_dir, 'Som - Feb 2023 - Reports.pdf')
 merger.write(output_filepath)
 merger.close()
 
