@@ -1,8 +1,7 @@
-import numpy as np
 import datetime
 
-begin_date = datetime.date(2022, 9, 1)
-end_date = datetime.date(2024, 1, 1)
+begin_date = datetime.date(2024, 6, 1)
+end_date = datetime.date(2025, 6, 1)
 delta = end_date - begin_date
 day_count = delta.days
 
@@ -54,11 +53,14 @@ def count_med_strips_with_available_count(name, per_day, per_strip, available_co
 # count_med_strips(name='Osteofos 70', per_day=1. / 7, per_strip=4)
 
 """ Count mediciation with available accounted for """
-count_med_strips_with_available_count(name='Levipil 500', per_day=2, per_strip=10, available_count=0)
-count_med_strips_with_available_count(name='Ramipril', per_day=3, per_strip=15, available_count=0)
+# count_med_strips_with_available_count(name='Levipil 500', per_day=2, per_strip=10, available_count=0)
+# count_med_strips_with_available_count(name='Cellcept', per_day=3, per_strip=10, available_count=2 * 428)
+count_med_strips_with_available_count(name='Ramipril/Cardace', per_day=3, per_strip=15, available_count=65 * 15)
 # count_med_strips_with_available_count(name='Azoran', per_day=3, per_strip=10, available_count=0)
-count_med_strips_with_available_count(name='HCQS 200', per_day=2, per_strip=15, available_count=0)
-count_med_strips_with_available_count(name='Omnacortil 2.5', per_day=2, per_strip=10, available_count=0)
-count_med_strips_with_available_count(name='Ecosporin 75', per_day=1, per_strip=10, available_count=0)
-count_med_strips_with_available_count(name='Shellcal HD', per_day=1, per_strip=15, available_count=0)
-count_med_strips_with_available_count(name='Osteofos 70', per_day=1. / 7, per_strip=4, available_count=0)
+count_med_strips_with_available_count(name='HCQS 200', per_day=2, per_strip=15, available_count=600)
+count_med_strips_with_available_count(name='Omnacortil 2.5', per_day=0.5, per_strip=10, available_count=130)
+count_med_strips_with_available_count(name='Ecosporin 75', per_day=1, per_strip=14, available_count=10 * 14)
+# count_med_strips_with_available_count(name='Shellcal HD', per_day=1, per_strip=15, available_count=390)
+count_med_strips_with_available_count(name='Osteofos 70', per_day=1. / 7, per_strip=4, available_count=18 * 4)
+count_med_strips_with_available_count(name='Tayo 60K', per_day=1. / 30., per_strip=7, available_count=12)
+

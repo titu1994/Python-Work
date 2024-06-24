@@ -21,6 +21,8 @@ if (filepaths is None or len(filepaths) == 0) and (directory is None):
     raise FileNotFoundError("No file provided!")
 
 if filepaths is None:
+    if directory[-1] in ("'", '"'):
+        directory = directory[:-1]
     filepaths = sorted(list(glob.glob(os.path.join(directory, "*.pdf"))))
 
 if output_dir is None:
