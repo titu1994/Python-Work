@@ -38,7 +38,7 @@ for pdf in filepaths:
 
 
 output_dir = os.path.abspath(output_dir)
-output_filepath = os.path.join(output_dir, 'Som - Feb 2023 - Reports.pdf')
+output_filepath = os.path.join(output_dir, 'Som - Jan 2025 - Reports.pdf')
 merger.write(output_filepath)
 merger.close()
 

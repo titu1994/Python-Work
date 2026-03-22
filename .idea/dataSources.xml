@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="GPM" uuid="278e0156-43e4-46a5-a66b-c49d77d72bbc">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\somsh\PycharmProjects\Python-Work\GooglePlayMusic\GPM.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
